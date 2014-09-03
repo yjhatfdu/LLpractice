@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -76,14 +76,14 @@
         }
     </style>
  
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
-    <script src="/scripts/audioBufferLoader.js"></script>
+
+    <script src="scripts/audioBufferLoader.js"></script>
     <script>
-       var hitmapfile="/hitmaps/snowhalation.json";
-        
+       var hitmapfile="hitmaps/snowhalation.json";
+        var bgmpath="bgm/snow halation.mp3"；
         </script>
     
- <script src="/scripts/LLpractice.js"></script>
+ <script src="scripts/LLpractice.js"></script>
 
 </head>
 <body ontouchmove="event.preventDefault()" onload=" init()" onresize="resize()" onorientationchange="resize()";>
