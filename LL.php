@@ -1,3 +1,13 @@
+<?php
+
+        parse_str($_SERVER["QUERY_STRING"], $query_string);
+$mapfilename=$query_string['map'];
+$bgmfilename=$query_string['bgm'];
+$bgimg=$query_string['bgimg']
+
+
+
+    ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -27,7 +37,7 @@
        
         }
         p{
-            margin-top:5px
+            margin-top:5px;
             font-size:40px;
         }
         div{
@@ -60,7 +70,7 @@
             width: 100%;
             position: absolute;
             text-align: center;
-            background: url("background.jpg");
+            background: url("bgimg/<?php  echo($bgimg)?>");
             background-size: contain;
         }
      #result{
@@ -78,9 +88,10 @@
  
 
     <script src="scripts/audioBufferLoader.js"></script>
-    <script>
-       var hitmapfile="hitmaps/snowhalation.json";
-        var bgmpath="bgm/snow halation.mp3"；
+    <script defer="defer">
+       var hitmapfile="hitmaps/<?php echo($mapfilename)?>";
+        var bgmpath="bgm/<?php echo($bgmfilename)?>";
+
         </script>
     
  <script src="scripts/LLpractice.js"></script>
