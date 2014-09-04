@@ -25,7 +25,8 @@ $bgimg=$query_string['bgimg']
         }
     
         #maincanvas{
-       
+            -webkit-user-select:none;
+            -webkit-touch-callout:none;
        position:absolute;
        
         }
@@ -38,7 +39,7 @@ $bgimg=$query_string['bgimg']
         }
         p{
             margin-top:5px;
-            font-size:40px;
+            font-size:20px;
         }
         div{
             margin:0;
@@ -114,9 +115,10 @@ $bgimg=$query_string['bgimg']
     </div>
 
     <div class="overlaydiv">
-        <canvas id="maincanvas"></canvas>
+
     </div>
     <div class="overlaydiv">
+        <canvas id="maincanvas" ></canvas>
         <div id="touchview">
 
             <div class="test" id="indicator" style="background-color:rgba(0, 0, 0, 0.46);text-align:center;color:#ffffff;font-size:40px" ></div>

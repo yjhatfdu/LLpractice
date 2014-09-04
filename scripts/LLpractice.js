@@ -20,6 +20,7 @@ var starttime;
 var touchview;
 var windowwidth, windowheight;
 var ended=false;
+var mycanvas;
 function init() {
     // var maindiv = document.getElementById("maindiv");
     // maindiv.style.height = window.innerHeight;
@@ -40,7 +41,7 @@ function resize() {
     //取得canvas实际尺寸,根据窗口调整布局
     document.getElementById("maindiv").style.height = "100%";
     document.getElementById("maindiv").style.width = "100%";
-    var mycanvas = document.getElementById("maincanvas");
+    mycanvas = document.getElementById("maincanvas");
     
     var bgimg = document.getElementById("bgimg");
     windowheight = document.getElementById("maindiv").offsetHeight;
@@ -239,6 +240,12 @@ function start() {
         currentdrawingnotes[i] = new Array();
     }
     //创建touch检测
+mycanvas.addEventListener("touchstart",canvastouchdown,false);
+    mycanvas.addEventListener("touchend",canvastouchend,false);
+    mycanvas.addEventListener("mousedown",canvastouchdown,false);
+    mycanvas.addEventListener("mouseup",canvastouchend,false);
+document.getElementById("touchview").style.display="none";
+    /*
     var htmlstring = "";
     for (i = 0; i < 9; i++) {
         
@@ -259,6 +266,10 @@ function start() {
         touch.style.height = width + "px";
         
     }
+    */
+
+
+
     //初始化hitsprite防止开始时播放动画
     for (i=0;i<9;i++){
         hitsprite[i]=-hitspritetime;
@@ -357,12 +368,19 @@ function oneframe() {
     //计算fps
     fps = 1000 / (fstarttime - fendtime);
     
-    if (currenttime>duration+5000){
+    if (currenttime>duration+1000){
+        mycanvas.removeEventListener("touchstart",canvastouchdown,false);
+        mycanvas.removeEventListener("touchend",canvastouchend,false);
+        mycanvas.removeEventListener("mousedown",canvastouchdown,false);
+        mycanvas.removeEventListener("mouseup",canvastouchend,false);
         showresult();
         return;
     }
     requestAnimationFrame(oneframe);
-    
+    if(needplaybuffer){
+        playsound(needplaybuffer);
+        needplaybuffer=null;
+    }
 }
 
 function drawnote(index, lane) {
@@ -450,7 +468,7 @@ function drawshortnote(starttime,lane,fill,parallel) {
         maingraphics.lineTo(circle.x - circle.r + p*10 * (circle.r / 64), circle.y);
     }
     
-    maingraphics.lineWidth = 13  * (circle.r / 64)*p;
+    maingraphics.lineWidth = 16  * (circle.r / 64)*p;
     
     maingraphics.closePath;
     maingraphics.stroke();
@@ -465,7 +483,7 @@ function drawshortnote(starttime,lane,fill,parallel) {
 
 function drawhitsprite(lane)
 {
-    
+
     // 透明渐变太费性能，转用图片来实现
     
     
@@ -489,7 +507,7 @@ function drawhitsprite(lane)
 
 
 function drawrank() {
-    
+
     var offset=(currenttime-rankfade)/rankpritetime;
     maingraphics.textBaseline="middle";
     maingraphics.textAlign="center";
@@ -500,7 +518,7 @@ function drawrank() {
     
 }
 function drawcombo() {
-    
+
     maingraphics.textBaseline="middle";
     maingraphics.textAlign="center";
     maingraphics.fillStyle ="rgba(255,255,255,0.2)";
@@ -550,20 +568,23 @@ function getcircle(offsettime,lane) {
 
 function perfect() {
     perfectcount += 1;
-    playsound(perfectbuffer);
+    needplaybuffer=perfectbuffer;
+    //playsound(perfectbuffer);
     currentrank="Perfect";
     rankfade=currenttime;
 }
 
 function great() {
     greatcount += 1;
-    playsound(greatbuffer);
+    needplaybuffer=greatbuffer;
+    //playsound(greatbuffer);
     currentrank="Great";
     rankfade=currenttime;
 }
 function good() {
     goodcount += 1;
-    playsound(goodbuffer);
+    needplaybuffer=goodbuffer;
+    //playsound(goodbuffer);
     currentrank="Good";
     rankfade=currenttime;
 }
@@ -577,7 +598,73 @@ function miss() {
     currentrank="Miss";
     rankfade=currenttime;
 }
+function canvastouchdown(evt){
+    //相应canvas的touchstart事件
+    var x,y;
+    if(evt.changedTouches){
+        for( i=0; i< evt.changedTouches.length;i++)
+        {
+            x= evt.changedTouches[i].pageX;
+            y= evt.changedTouches[i].pageY;
+            var lane=laneofpos(x,y);
+            if(lane>=0){
+                touchdown(laneofpos(x,y));
+            }
+        }
 
+    }else
+    {
+        x=evt.pageX;
+        y=evt.pageY;
+        var lane=laneofpos(x,y);
+        if(lane>=0){
+            touchdown(laneofpos(x,y));
+        }
+    }
+
+}
+function canvastouchend(evt){
+    var x,y;
+    if(evt.changedTouches){
+        for( i=0; i< evt.changedTouches.length;i++)
+        {
+            x= evt.changedTouches[i].pageX;
+            y= evt.changedTouches[i].pageY;
+            var lane=laneofpos(x,y);
+            if(lane>=0){
+                touchup(laneofpos(x,y));
+            }
+        }
+    }else
+    {
+        x=evt.pageX;
+        y=evt.pageY;
+    }
+    var lane=laneofpos(x,y);
+    if(lane>=0){
+        touchup(laneofpos(x,y));
+    }
+
+}
+function laneofpos(x,y)
+{
+    //使用绝对坐标解析出相对的方向0-8
+    //相对于canvas的位置
+    var rx,ry;
+    rx=x-mycanvas.offsetLeft;
+ry=y-mycanvas.offsetTop;
+    //解析出对于画图的相对坐标；
+    rx=rx/ratio-512;
+ry=ry/ratio-170;
+    //算出角度
+    if (rx!=0){
+        var r=Math.sqrt(rx*rx+ry*ry);
+        var angle= Math.acos(-rx/r);
+        return Math.round(angle/0.125/Math.PI);
+    }else{return}
+
+
+}
 function touchdown(lane) {
     //相应按下的事件
     var d = new Date();
@@ -648,13 +735,14 @@ function lostcombo(){
     currentcombo = 0;
 }
 function combo(countcombo) {
-    currentcombo = currentcombo + 1 * countcombo;
+    currentcombo = currentcombo + countcombo;
     if (currentcombo > maxcombo) {
         maxcombo = currentcombo;
     }
 }
 
 var lastplaytime;
+var needplaybuffer;
 function playsound(soundbuffer) {
     //播放音效
     
