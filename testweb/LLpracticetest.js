@@ -93,7 +93,7 @@ function initaudio() {
     
     //使用ajax加载
     var request = new XMLHttpRequest();
-    request.open("GET", bgmpath, true);
+    request.open("GET",hitmapdata.audiofile, true);
     request.responseType = "arraybuffer";
     request.onprogress = function (evt) {
         var progress = evt.loaded / evt.total;

@@ -1,13 +1,4 @@
-<?php
 
-        parse_str($_SERVER["QUERY_STRING"], $query_string);
-$mapfilename=$query_string['map'];
-$bgmfilename=$query_string['bgm'];
-$bgimg=$query_string['bgimg']
-
-
-
-    ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -90,12 +81,12 @@ $bgimg=$query_string['bgimg']
 
     <script src="scripts/audioBufferLoader.js"></script>
     <script defer="defer">
-       var hitmapfile="hitmaps/<?php echo($mapfilename)?>";
-        var bgmpath="bgm/<?php echo($bgmfilename)?>";
+       var hitmapfile="data.js";
+
 
         </script>
     
- <script src="scripts/LLpractice.js"></script>
+ <script src="LLpracticetest.js"></script>
 
 </head>
 <body ontouchmove="event.preventDefault()" onload=" init()" onresize="resize()" onorientationchange="resize();" id="body">
