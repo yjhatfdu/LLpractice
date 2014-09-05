@@ -91,6 +91,12 @@ Public Class Form2
         listtotable()
 
     End Sub
+    Function mmpb() As Double
+        If TextBox6.Text IsNot Nothing Then
+            Return 60000 / Val(TextBox6.Text)
+        End If
+
+    End Function
     Private Sub tabletolist()
         notelist.Clear()
         For Each i As DataGridViewRow In DataGridView1.Rows
@@ -98,8 +104,8 @@ Public Class Form2
                 Continue For
             End If
             Dim newnote As New note
-            newnote.starttime = i.Cells(1).Value
-            Dim endtime = i.Cells(2).Value
+            newnote.starttime = i.Cells(1).Value * mmpb()
+            Dim endtime = i.Cells(2).Value * mmpb()
             If endtime = 0 Then
                 newnote.endtime = newnote.starttime
             Else
@@ -118,7 +124,7 @@ Public Class Form2
     Private Sub listtotable()
         DataGridView1.Rows.Clear()
         For Each i In notelist
-            DataGridView1.Rows.Add(0, i.starttime, i.endtime, i.longnote, i.parallel, i.lane + 1)
+            DataGridView1.Rows.Add(0, i.starttime / mmpb(), i.endtime / mmpb(), i.longnote, i.parallel, i.lane + 1)
         Next
     End Sub
     Private Sub fftomm()
@@ -145,20 +151,21 @@ Public Class Form2
 
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
         If RadioButton1.Checked Then
-            tabletolist()
-            fftomm()
-            listtotable()
+            refreshdata()
         End If
     End Sub
 
     Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
         If RadioButton2.Checked Then
-            tabletolist()
-            mmtoff()
-            listtotable()
+            refreshdata()
         End If
     End Sub
 
+    Private Sub refreshdata()
+        tabletolist()
+        mmtoff()
+        listtotable()
+    End Sub
     Private Sub Toffsettimechange(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
         If TextBox1.Text = "" Then
             Return
@@ -205,5 +212,11 @@ Public Class Form2
     End Sub
     Private Sub onend() Handles Me.FormClosing
         webserver.Kill()
+    End Sub
+
+    Private Sub TextBox6_TextChanged(sender As Object, e As EventArgs) Handles TextBox6.TextChanged
+        If TextBox6.Text IsNot Nothing Then
+            refreshdata()
+        End If
     End Sub
 End Class

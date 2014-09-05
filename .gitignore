@@ -1,10 +1,10 @@
 
 
-webapp/bgimg/
+webapp/bgimg/*
 
-webapp/bgm/
+webapp/bgm/*
 
-webapp/hitmaps/
+webapp/hitmaps/*
 webapp/.idea
 
 .idea/scopes/scope_settings.xml

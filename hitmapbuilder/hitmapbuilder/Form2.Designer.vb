@@ -30,6 +30,8 @@ Partial Class Form2
         Me.longnotecol = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.parallelcol = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.lanecol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
@@ -49,8 +51,8 @@ Partial Class Form2
         Me.Button2 = New System.Windows.Forms.Button()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.TextBox6 = New System.Windows.Forms.TextBox()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -144,6 +146,23 @@ Partial Class Form2
         Me.lanecol.HeaderText = "方向(左1-9右)"
         Me.lanecol.Name = "lanecol"
         Me.lanecol.Width = 150
+        '
+        'Label7
+        '
+        Me.Label7.Location = New System.Drawing.Point(199, 13)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(96, 28)
+        Me.Label7.TabIndex = 0
+        Me.Label7.Text = "(请把默认浏览器设为chrome）"
+        '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(117, 12)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(75, 23)
+        Me.Button4.TabIndex = 16
+        Me.Button4.Text = "测试"
+        Me.Button4.UseVisualStyleBackColor = True
         '
         'Button3
         '
@@ -258,6 +277,8 @@ Partial Class Form2
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.TextBox6)
+        Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.RadioButton2)
         Me.GroupBox1.Controls.Add(Me.RadioButton1)
         Me.GroupBox1.Location = New System.Drawing.Point(30, 44)
@@ -270,7 +291,7 @@ Partial Class Form2
         'RadioButton2
         '
         Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(61, 56)
+        Me.RadioButton2.Location = New System.Drawing.Point(16, 55)
         Me.RadioButton2.Name = "RadioButton2"
         Me.RadioButton2.Size = New System.Drawing.Size(53, 16)
         Me.RadioButton2.TabIndex = 1
@@ -282,7 +303,7 @@ Partial Class Form2
         '
         Me.RadioButton1.AutoSize = True
         Me.RadioButton1.Checked = True
-        Me.RadioButton1.Location = New System.Drawing.Point(61, 21)
+        Me.RadioButton1.Location = New System.Drawing.Point(16, 20)
         Me.RadioButton1.Name = "RadioButton1"
         Me.RadioButton1.Size = New System.Drawing.Size(47, 16)
         Me.RadioButton1.TabIndex = 0
@@ -307,22 +328,22 @@ Partial Class Form2
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'Button4
+        'Label8
         '
-        Me.Button4.Location = New System.Drawing.Point(117, 12)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 23)
-        Me.Button4.TabIndex = 16
-        Me.Button4.Text = "测试"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(97, 20)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(95, 24)
+        Me.Label8.TabIndex = 2
+        Me.Label8.Text = "BPM（如果要毫秒" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "则为60000）"
         '
-        'Label7
+        'TextBox6
         '
-        Me.Label7.Location = New System.Drawing.Point(199, 13)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(96, 28)
-        Me.Label7.TabIndex = 0
-        Me.Label7.Text = "(请把默认浏览器设为chrome）"
+        Me.TextBox6.Location = New System.Drawing.Point(92, 50)
+        Me.TextBox6.Name = "TextBox6"
+        Me.TextBox6.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox6.TabIndex = 3
+        Me.TextBox6.Text = "60000"
         '
         'Form2
         '
@@ -372,4 +393,6 @@ Partial Class Form2
     Friend WithEvents lanecol As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents TextBox6 As System.Windows.Forms.TextBox
 End Class

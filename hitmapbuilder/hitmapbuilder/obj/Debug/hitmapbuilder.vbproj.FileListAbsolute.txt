@@ -32,3 +32,12 @@ C:\Users\yjh\Documents\Visual Studio 2013\Projects\hitmapbuilder\hitmapbuilder\b
 C:\Users\yjh\Documents\GitHub\LLpractice\hitmapbuilder\hitmapbuilder\obj\Debug\hitmapbuilder.exe
 C:\Users\yjh\Documents\GitHub\LLpractice\hitmapbuilder\hitmapbuilder\obj\Debug\hitmapbuilder.xml
 C:\Users\yjh\Documents\GitHub\LLpractice\hitmapbuilder\hitmapbuilder\obj\Debug\hitmapbuilder.pdb
+C:\Users\yjh\Documents\GitHub\LLpractice\hitmapbuilder\hitmapbuilder\bin\Debug\hitmapbuilder.exe
+C:\Users\yjh\Documents\GitHub\LLpractice\hitmapbuilder\hitmapbuilder\bin\Debug\hitmapbuilder.pdb
+C:\Users\yjh\Documents\GitHub\LLpractice\hitmapbuilder\hitmapbuilder\bin\Debug\hitmapbuilder.xml
+C:\Users\yjh\Documents\GitHub\LLpractice\hitmapbuilder\hitmapbuilder\bin\Debug\Newtonsoft.Json.dll
+C:\Users\yjh\Documents\GitHub\LLpractice\hitmapbuilder\hitmapbuilder\obj\Debug\hitmapbuilder.vbprojResolveAssemblyReference.cache
+C:\Users\yjh\Documents\GitHub\LLpractice\hitmapbuilder\hitmapbuilder\obj\Debug\hitmapbuilder.Form1.resources
+C:\Users\yjh\Documents\GitHub\LLpractice\hitmapbuilder\hitmapbuilder\obj\Debug\hitmapbuilder.Form2.resources
+C:\Users\yjh\Documents\GitHub\LLpractice\hitmapbuilder\hitmapbuilder\obj\Debug\hitmapbuilder.Resources.resources
+C:\Users\yjh\Documents\GitHub\LLpractice\hitmapbuilder\hitmapbuilder\obj\Debug\hitmapbuilder.vbproj.GenerateResource.Cache
