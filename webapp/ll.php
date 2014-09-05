@@ -124,7 +124,7 @@ $bgimg=$query_string['bgimg']
             <div class="test" id="indicator" style="background-color:rgba(0, 0, 0, 0.46);text-align:center;color:#ffffff;font-size:40px" ></div>
         </div>
 
-        <div id="result">
+        <div id="result" style="background-color:rgba(0, 0, 0, 0.46)">
             <p id="maxcombo"></p>
             <p id="perfectc"></p>
             <p id="greatc"></p>
