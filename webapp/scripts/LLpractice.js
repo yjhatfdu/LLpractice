@@ -20,7 +20,7 @@ var starttime;
 var touchview;
 var windowwidth, windowheight;
 var ended=false;
-var mycanvas;
+var mycanvas,mybody;
 function init() {
     // var maindiv = document.getElementById("maindiv");
     // maindiv.style.height = window.innerHeight;
@@ -120,7 +120,7 @@ function initaudio() {
                                         [
                                          "perfect.mp3",
                                          "great.mp3",
-                                         "good.mp3",
+                                         "good.mp3"
                                          
                                          ],
                                         finishedloading
@@ -244,6 +244,9 @@ mycanvas.addEventListener("touchstart",canvastouchdown,false);
     mycanvas.addEventListener("touchend",canvastouchend,false);
     mycanvas.addEventListener("mousedown",canvastouchdown,false);
     mycanvas.addEventListener("mouseup",canvastouchend,false);
+    mybody=document.getElementById("body");
+    mybody.addEventListener("keydown",keydown,false);
+    mybody.addEventListener("keyup",keyup,false);
 document.getElementById("touchview").style.display="none";
     /*
     var htmlstring = "";
@@ -645,6 +648,41 @@ function canvastouchend(evt){
         touchup(laneofpos(x,y));
     }
 
+}
+//加入键盘相应
+function keydown(evt){
+   var keychar=String.fromCharCode( evt.keyCode);
+    var lane;
+    switch (keychar){
+        case "A":lane=0;break;
+        case "S":lane=1;break;
+        case "D":lane=2;break;
+        case "F":lane=3;break;
+        case "G":lane=4;break;
+        case "H":lane=5;break;
+        case "J":lane=6;break;
+        case "K":lane=7;break;
+        case "L":lane=8;break;
+
+    }
+    touchdown(lane);
+}
+function keyup(evt){
+    var keychar=String.fromCharCode( evt.keyCode);
+    var lane;
+    switch (keychar){
+        case "A":lane=0;break;
+        case "S":lane=1;break;
+        case "D":lane=2;break;
+        case "F":lane=3;break;
+        case "G":lane=4;break;
+        case "H":lane=5;break;
+        case "J":lane=6;break;
+        case "K":lane=7;break;
+        case "L":lane=8;break;
+
+    }
+    touchup(lane);
 }
 function laneofpos(x,y)
 {

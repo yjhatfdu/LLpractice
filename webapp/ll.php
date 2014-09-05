@@ -98,7 +98,7 @@ $bgimg=$query_string['bgimg']
  <script src="scripts/LLpractice.js"></script>
 
 </head>
-<body ontouchmove="event.preventDefault()" onload=" init()" onresize="resize()" onorientationchange="resize()";>
+<body ontouchmove="event.preventDefault()" onload=" init()" onresize="resize()" onorientationchange="resize();" id="body">
 
     <div id="maindiv" class="overlaydiv">
 
