@@ -192,7 +192,7 @@ function loadhitmap() {
      示例：
      {
      "audiofile":"snowhalation.mp3"
-     "speed":128  /最大128
+     "speed":128  
      "lane":[{"note":
      [
      "starttime":1213,"endtime":1213 ,"longnote":false,"parallel":false,"hold":false},
@@ -338,13 +338,10 @@ function oneframe() {
         if (notes[i].length > 0) {
             //将需要画的note取出
             if (notes[i][0].starttime < (fstarttime + 128000/speed)) {
-                currentdrawingnotes[i].push(notes[i].shift());
-                
+                currentdrawingnotes[i].push(notes[i].shift());               
             }
         }
-        
-        
-        if (currentdrawingnotes[i].length > 0) {
+       if (currentdrawingnotes[i].length > 0) {
             //将已经超过的note取出
             if (currentdrawingnotes[i][0].endtime < fstarttime - 64000 / speed || ((currentdrawingnotes[i][0].starttime < fstarttime - 64000 / speed) && currentdrawingnotes[i][0].hold==false )) {
                 currentdrawingnotes[i].shift();
