@@ -21,6 +21,14 @@ var touchview;
 var windowwidth, windowheight;
 var ended=false;
 var mycanvas,mybody;
+//设置播放开始的时间
+var inittime;
+function getQueryString(name) {
+    //获取请求的参数
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
 function init() {
     // var maindiv = document.getElementById("maindiv");
     // maindiv.style.height = window.innerHeight;
@@ -90,10 +98,12 @@ function initaudio() {
     }
     
     //加载bgm
-    
+    if (bgmpath==null){
+        var bgmpath=hitmapdata.audiofile;
+    }
     //使用ajax加载
     var request = new XMLHttpRequest();
-    request.open("GET",hitmapdata.audiofile, true);
+    request.open("GET", bgmpath, true);
     request.responseType = "arraybuffer";
     request.onprogress = function (evt) {
         var progress = evt.loaded / evt.total;
@@ -189,7 +199,11 @@ function loadhitmap() {
      .....
      ]    ]      }
      */
+
     var request = new XMLHttpRequest;
+    if (hitmapfile==null){
+      var  hitmapfile="data.js";
+    }
     request.open("GET", hitmapfile, false);
     request.send();
     hitmapdata = eval("(" + request.responseText + ")");
@@ -232,6 +246,13 @@ var currentrank;
 function start() {
     //开始
     resize();
+    document.getElementById("touchview").style.display="none";
+    setTimeout(start2,2000);
+//使用css3变换来进行歌曲名称的显示
+}
+
+function start2(){
+    //start第二部分，实现停止两秒后播放
     //var bgmobj = document.getElementById("bgmmp3");
     //将bgm连接至AudioContext
     //bgmsource.connect(audiocontext.destination);
@@ -247,7 +268,7 @@ mycanvas.addEventListener("touchstart",canvastouchdown,false);
     mybody=document.getElementById("body");
     mybody.addEventListener("keydown",keydown,false);
     mybody.addEventListener("keyup",keyup,false);
-document.getElementById("touchview").style.display="none";
+
     /*
     var htmlstring = "";
     for (i = 0; i < 9; i++) {
@@ -286,14 +307,16 @@ document.getElementById("touchview").style.display="none";
     source.buffer =bgmbuffer;
     source.connect(audiocontext.destination);
     
-    source. addEventListener("ended",function(){ended=true},false
-                             )
-    
-    source.start(0);
+    source. addEventListener("ended",function(){ended=true},false )
+    if (getQueryString("t"))
+    {
+        inittime=parseInt(getQueryString("t"));
+    }
+    source.start(0,inittime);
     
     //记录开始时间
     var d = new Date;
-    starttime = d.getTime();
+    starttime = d.getTime()-1000*inittime;
     
     //图像渲染第一帧
     //fpsview = document.getElementById("fpsview");
