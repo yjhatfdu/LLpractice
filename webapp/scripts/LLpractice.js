@@ -21,7 +21,8 @@
 var responsetime = 200;
 
 //渲染精度
-const p = 0.5;
+const p = 1;
+const linewidth=10;
 var hitmapdata;
 var duration;
 
@@ -513,7 +514,7 @@ function drawshortnote(starttime,lane,fill,parallel) {
         maingraphics.lineTo(circle.x - circle.r + p*10 * (circle.r / 64), circle.y);
     }
     
-    maingraphics.lineWidth = 16  * (circle.r / 64)*p;
+    maingraphics.lineWidth = linewidth  * (circle.r / 64);
     
     maingraphics.closePath;
     maingraphics.stroke();
@@ -537,7 +538,7 @@ function drawhitsprite(lane)
     var offsettime=currenttime-hitsprite[lane];
     var grd=maingraphics.createRadialGradient(targetcircle.x,targetcircle.y,p*64*offsettime/hitspritetime,targetcircle.x,targetcircle.y,p*64*(offsettime/hitspritetime+1));
     
-    var alpha=1*(1-offsettime/hitspritetime);
+    var alpha=Math.sqrt(1-offsettime/hitspritetime);
     grd.addColorStop(0,"rgba(255,255,255,"+alpha*alpha+")");
     grd.addColorStop(0.5,"rgba(255,255,255,"+alpha+")");
     grd.addColorStop(1,"rgba(255,255,255,0)");

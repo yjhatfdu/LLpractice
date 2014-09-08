@@ -94,6 +94,8 @@ $bgimg=$query_string['bgimg']
 		#indicator{
 			background-color:rgba(0, 0, 0, 0.46);text-align:center;color:#ffffff;font-size:30px
 		}
+		#back{
+			position:fixed;right:0px;height:50px;width:100px;font-size:40px;color:white;background-color:rgba(0, 0, 0, 0.46)}
 		@media screen and (max-width: 600px) {
 			#indicator{
 				font-size:15px;
@@ -102,6 +104,7 @@ $bgimg=$query_string['bgimg']
 			height:100%;
 		}
 		p{font-size:15px;margin-top:3px}
+		#back{height:25px;width:50px;font-size:20px;}
     </style>
  
 
@@ -154,7 +157,7 @@ $bgimg=$query_string['bgimg']
                 <h2>再来一次</h2>
             </div>
         </div>
-        <div style="position:fixed;right:0px;height:50px;width:100px;font-size:40px;color:white;background-color:rgba(0, 0, 0, 0.46) " onclick="history.back()">Back</div>
+        <div id="back" onclick="history.back()">Back</div>
     </div>
     
 

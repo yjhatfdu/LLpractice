@@ -6,6 +6,18 @@
 
 //参数设置
 //击打相应时间，默认在128的速度下为200ms
+
+
+
+
+
+
+
+
+
+
+
+
 var responsetime = 200;
 
 //渲染精度
@@ -98,6 +110,7 @@ function initaudio() {
     }
     
     //加载bgm
+   
     if (bgmpath==null){
         var bgmpath=hitmapdata.audiofile;
     }
@@ -192,7 +205,7 @@ function loadhitmap() {
      示例：
      {
      "audiofile":"snowhalation.mp3"
-     "speed":128  
+     "speed":128  /最大128
      "lane":[{"note":
      [
      "starttime":1213,"endtime":1213 ,"longnote":false,"parallel":false,"hold":false},
@@ -201,9 +214,10 @@ function loadhitmap() {
      */
 
     var request = new XMLHttpRequest;
+    /*调试版启用
     if (hitmapfile==null){
       var  hitmapfile="data.js";
-    }
+    }*/
     request.open("GET", hitmapfile, false);
     request.send();
     hitmapdata = eval("(" + request.responseText + ")");
@@ -248,8 +262,6 @@ function start() {
     resize();
     document.getElementById("touchview").style.display="none";
 
-//使用css3变换来进行歌曲名称的显示
-
     //var bgmobj = document.getElementById("bgmmp3");
     //将bgm连接至AudioContext
     //bgmsource.connect(audiocontext.destination);
@@ -258,10 +270,14 @@ function start() {
         currentdrawingnotes[i] = new Array();
     }
     //创建touch检测
-mycanvas.addEventListener("touchstart",canvastouchdown,false);
-    mycanvas.addEventListener("touchend",canvastouchend,false);
-    mycanvas.addEventListener("mousedown",canvastouchdown,false);
-    mycanvas.addEventListener("mouseup",canvastouchend,false);
+	if(document.hasOwnProperty("ontouchstart")) {
+      mycanvas.addEventListener("touchstart",canvastouchdown,false);
+ mycanvas.addEventListener("touchend",canvastouchend,false); 
+    }else{    mycanvas.addEventListener("mousedown",canvastouchdown,false);
+    mycanvas.addEventListener("mouseup",canvastouchend,false);}
+
+
+
     mybody=document.getElementById("body");
     mybody.addEventListener("keydown",keydown,false);
     mybody.addEventListener("keyup",keyup,false);
@@ -309,6 +325,7 @@ mycanvas.addEventListener("touchstart",canvastouchdown,false);
     {
         inittime=parseInt(getQueryString("t"));
     }else {inittime=0}
+
     source.start(0,inittime);
     
     //记录开始时间
@@ -322,46 +339,39 @@ mycanvas.addEventListener("touchstart",canvastouchdown,false);
     
     
 }
-
-
+var frame=0;
+function test(){
+	var a=1;
+	}
 function oneframe() {
     //渲染一帧
     //记录开始时间
     var d = new Date;
     var fstarttime = d.getTime() - starttime;
     currenttime = fstarttime;
+	frame+=1;
     maingraphics.clearRect(0, 0, p*1024, p*768);
     for (i = 0; i < 9; i++) {
         if (notes[i].length > 0) {
             //将需要画的note取出
             if (notes[i][0].starttime < (fstarttime + 128000/speed)) {
-                currentdrawingnotes[i].push(notes[i].shift());               
+                currentdrawingnotes[i].push(notes[i].shift());
+                
             }
         }
-       if (currentdrawingnotes[i].length > 0) {
+        
+        
+        if (currentdrawingnotes[i].length > 0) {
             //将已经超过的note取出
-            if (currentdrawingnotes[i][0].endtime < fstarttime - 64000 / speed || ((currentdrawingnotes[i][0].starttime < fstarttime - 64000 / speed) && currentdrawingnotes[i][0].hold==false )) {
+            if (currentdrawingnotes[i][0].endtime < fstarttime - responsetime  || ((currentdrawingnotes[i][0].starttime < fstarttime - responsetime ) && currentdrawingnotes[i][0].hold==false )) {
                 currentdrawingnotes[i].shift();
                 lostcombo();
                 miss();
             }
         }
-        //画hit反馈动画
-        for (j=0;j<9;j++)
-        {
-            if (currenttime-hitsprite[j]<hitspritetime)
-            {
-                drawhitsprite(j);
-            }
-        }
-        //画combo以及rank
-        if (currenttime-rankfade<rankpritetime){
-            drawrank();
-            
-        }
-        if (currentcombo>0){
-            drawcombo();
-        }
+       
+		
+      
         //设置描边颜色和宽度
         maingraphics.strokeStyle = "rgb(244,255,92)";
         
@@ -373,8 +383,23 @@ function oneframe() {
         }
         
     }
-    
-    
+     //画hit反馈动画
+		
+        for (j=0;j<9;j++)
+        {
+            if (currenttime-hitsprite[j]<hitspritetime)
+            {
+                drawhitsprite(j);
+            }
+        }
+        //画combo以及rank
+      if (currenttime-rankfade<rankpritetime){
+            drawrank();
+            
+        }
+        if (currentcombo>0){
+            drawcombo();
+        }
     //检查bgm是否结束
     /* if (document.getElementById("bgmmp3").ended==false)
      {
@@ -382,12 +407,12 @@ function oneframe() {
      } else {
      
      }*/
-    //记录这一帧的结束时间
+    /*记录这一帧的结束时间
     var d = new Date;
     var fendtime = d.getTime() - starttime;
     //计算fps
     fps = 1000 / (fstarttime - fendtime);
-    
+    */
     if (currenttime>duration+1000){
         mycanvas.removeEventListener("touchstart",canvastouchdown,false);
         mycanvas.removeEventListener("touchend",canvastouchend,false);
@@ -512,7 +537,7 @@ function drawhitsprite(lane)
     var offsettime=currenttime-hitsprite[lane];
     var grd=maingraphics.createRadialGradient(targetcircle.x,targetcircle.y,p*64*offsettime/hitspritetime,targetcircle.x,targetcircle.y,p*64*(offsettime/hitspritetime+1));
     
-    var alpha=0.5*(1-offsettime/hitspritetime);
+    var alpha=1*(1-offsettime/hitspritetime);
     grd.addColorStop(0,"rgba(255,255,255,"+alpha*alpha+")");
     grd.addColorStop(0.5,"rgba(255,255,255,"+alpha+")");
     grd.addColorStop(1,"rgba(255,255,255,0)");
@@ -532,7 +557,7 @@ function drawrank() {
     maingraphics.textBaseline="middle";
     maingraphics.textAlign="center";
     
-    maingraphics.fillStyle = "rgba(255,255,255,"+(1-offset)*0.1+")";
+    maingraphics.fillStyle = "rgba(255,255,255,"+(1-offset)*1+")";
     maingraphics.font=p*(40*offset+40) + "px Arial";
     maingraphics.fillText(currentrank,512*p,350*p);
     
@@ -541,7 +566,7 @@ function drawcombo() {
 
     maingraphics.textBaseline="middle";
     maingraphics.textAlign="center";
-    maingraphics.fillStyle ="rgba(255,255,255,0.2)";
+    maingraphics.fillStyle ="rgba(255,255,255,0.8)";
     maingraphics.font=40*p + "px Arial";
     maingraphics.fillText(currentcombo + " COMBO",512*p,250*p);
 }
@@ -831,7 +856,9 @@ function playsound(soundbuffer) {
     fxsource=audiocontext.createBufferSource();
     fxsource.connect(audiocontext.destination);
     fxsource.buffer = soundbuffer;
-    
+    fxsource.onended=function(){
+		fx.disconnect(audiocontext.desrination);
+		}
     fxsource.start(0);
     
 }
