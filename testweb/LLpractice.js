@@ -247,12 +247,9 @@ function start() {
     //开始
     resize();
     document.getElementById("touchview").style.display="none";
-    setTimeout(start2,2000);
-//使用css3变换来进行歌曲名称的显示
-}
 
-function start2(){
-    //start第二部分，实现停止两秒后播放
+//使用css3变换来进行歌曲名称的显示
+
     //var bgmobj = document.getElementById("bgmmp3");
     //将bgm连接至AudioContext
     //bgmsource.connect(audiocontext.destination);
@@ -311,7 +308,7 @@ mycanvas.addEventListener("touchstart",canvastouchdown,false);
     if (getQueryString("t"))
     {
         inittime=parseInt(getQueryString("t"));
-    }
+    }else {inittime=0}
     source.start(0,inittime);
     
     //记录开始时间

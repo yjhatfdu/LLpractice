@@ -16,7 +16,9 @@ $bgimg=$query_string['bgimg']
     <title></title>
 
     <style type="text/css">
-        body{
+  
+        
+		     body{
             margin:0;
             -webkit-user-select:none;
             -webkit-touch-callout:none;
@@ -75,21 +77,36 @@ $bgimg=$query_string['bgimg']
             background-size: contain;
         }
      #result{
-     position:relative;
+     position:fixed;
          text-align:center ;
          color:#8edcff;
        display:none;
-       top:200px
+       width:50%;
+	   left:25%;
+	   top:10%;
+	   height:80%;
             
      }
         #result.p {
             font-size: 30px;
         }
+		
+		#indicator{
+			background-color:rgba(0, 0, 0, 0.46);text-align:center;color:#ffffff;font-size:30px
+		}
+		@media screen and (max-width: 600px) {
+			#indicator{
+				font-size:15px;
+			}
+			#result{top:0;
+			height:100%;
+		}
+		p{font-size:15px;margin-top:3px}
     </style>
  
 
     <script src="scripts/audioBufferLoader.js"></script>
-    <script defer="defer">
+    <script defer>
        var hitmapfile="hitmaps/<?php echo($mapfilename)?>";
         var bgmpath="bgm/<?php echo($bgmfilename)?>";
 
@@ -121,7 +138,7 @@ $bgimg=$query_string['bgimg']
         <canvas id="maincanvas" ></canvas>
         <div id="touchview">
 
-            <div class="test" id="indicator" style="background-color:rgba(0, 0, 0, 0.46);text-align:center;color:#ffffff;font-size:40px" ></div>
+            <div class="test" id="indicator" style="" ></div>
         </div>
 
         <div id="result" style="background-color:rgba(0, 0, 0, 0.46)">
@@ -137,7 +154,7 @@ $bgimg=$query_string['bgimg']
                 <h2>再来一次</h2>
             </div>
         </div>
-        <div style="position:fixed;right:0px;height:50px;width:100px;font-size:40px;color:white;background-color:rgba(0, 0, 0, 0.46)" onclick="history.back()">Back</div>
+        <div style="position:fixed;right:0px;height:50px;width:100px;font-size:40px;color:white;background-color:rgba(0, 0, 0, 0.46) " onclick="history.back()">Back</div>
     </div>
     
 
