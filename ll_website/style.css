@@ -1,0 +1,91 @@
+@charset "UTF-8";
+body{
+	margin:0;
+	width:100%;
+	background-color:#fff;
+	
+}
+div{margin:0;
+
+}
+#main{
+	font-family:Arial Rounded MT,Arial;
+	
+	color:#111;
+	
+max-width:900px;
+margin:auto;
+}
+text-shadow:1px 1px 3px #111;
+
+#main.h1{
+	
+}
+#header{
+	background-color:#fff;
+}
+#footer{
+	text-align:center;
+	max-width:900px;
+	margin:auto;
+}
+#logo{text-align:left}
+#user{float:right}
+*.buttomcell{
+	width:20%;
+	float:left;
+	font-size:9px;
+	
+	}
+#livelist{
+	margin:0;
+}
+*.live{
+	background-color:#faf8fa;
+	width:46%;
+	margin-left:2%;
+	margin-right:2%;
+	margin-top:20px;
+	height:128px;
+	border-width:1px;
+	border-radius:10px;
+	-webkit-box-shadow:3px 3px 3px #AAA;
+	float:left;
+	text-align:right;
+	}
+*.live div{
+
+}	
+*.livecover{
+	width:128px;
+	height:128px;
+	float:left;
+	border-radius:10px;
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:center;
+}
+*.right{
+	float:right;
+	margin-right:5px;
+}
+a{
+	color:inherit;}
+@media screen and (max-width: 768px) {
+
+	h1{
+		font-size:30px;
+	}
+	h2{
+		font-size:18px;
+	}
+	.livelist.div{
+		font-size:12px;
+	}
+	*.buttomcell{
+		font-size:8px}
+	*.live{
+		width:96%;
+	}
+}
+

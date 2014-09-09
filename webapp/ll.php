@@ -92,13 +92,14 @@ $bgimg=$query_string['bgimg']
         }
 		
 		#indicator{
-			background-color:rgba(0, 0, 0, 0.46);text-align:center;color:#ffffff;font-size:30px
+			background-color:rgba(0, 0, 0, 0.46);text-align:center;color:#ffffff;font-size:30px;border-radius:10px;
 		}
 		#back{
 			position:fixed;right:0px;height:50px;width:100px;font-size:40px;color:white;background-color:rgba(0, 0, 0, 0.46)}
 		@media screen and (max-width: 600px) {
 			#indicator{
 				font-size:15px;
+				
 			}
 			#result{top:0;
 			height:100%;

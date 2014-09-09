@@ -536,14 +536,14 @@ function drawhitsprite(lane)
     //画hit的反馈效果
     var targetcircle=getcircle(0,lane);
     var offsettime=currenttime-hitsprite[lane];
-    var grd=maingraphics.createRadialGradient(targetcircle.x,targetcircle.y,p*64*offsettime/hitspritetime,targetcircle.x,targetcircle.y,p*64*(offsettime/hitspritetime+1));
+    var grd=maingraphics.createRadialGradient(targetcircle.x,targetcircle.y,1.5*p*64*offsettime/hitspritetime,targetcircle.x,targetcircle.y,1.5*p*64*(offsettime/hitspritetime+1));
     
     var alpha=Math.sqrt(1-offsettime/hitspritetime);
     grd.addColorStop(0,"rgba(255,255,255,"+alpha*alpha+")");
     grd.addColorStop(0.5,"rgba(255,255,255,"+alpha+")");
     grd.addColorStop(1,"rgba(255,255,255,0)");
     maingraphics.beginPath();
-    maingraphics.arc(targetcircle.x,targetcircle.y,targetcircle.r *2,0,2*Math.PI);
+    maingraphics.arc(targetcircle.x,targetcircle.y,targetcircle.r *3,0,2*Math.PI);
     maingraphics.fillStyle=grd;
     maingraphics.fill();
     
@@ -814,14 +814,14 @@ function ranknote(offsettime,countcombo,lane) {
     totaldelay += offsettime;
     totaloffset += Math.abs(offsettime);
     noteslength += 1;
-    var delay=Math.abs( offsettime*128/speed);
-    if(delay<=responsetime * 0.25){
+    var delay=Math.abs( offsettime);
+    if(delay<=responsetime * 0.25/speed*128){
         perfect();
         combo(countcombo);
-    } else if (delay <= responsetime *0.5) {
+    } else if (delay <= responsetime *0.5/speed*128) {
         great();
         combo(countcombo);
-    } else if (delay <= responsetime *0.75) {
+    } else if (delay <= responsetime *0.75/speed*128) {
         good();
         lostcombo();
     }else{

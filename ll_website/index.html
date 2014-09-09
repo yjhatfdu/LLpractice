@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+<link rel="stylesheet" href="css/coverflow.css"/>
+<script src="script/coverflow.js"></script>
+<script src="script/jquery.mobile-1.3.2.min.js"></script> 
+<script src="script/jquery-1.8.3.min.js"></script>
+<link href="style.css" rel="stylesheet" type="text/css">
+<title>LLPractice</title>
+<script>
+//判断访问终端
+var browser={
+    versions:function(){
+        var u = navigator.userAgent, app = navigator.appVersion;
+        return {
+            trident: u.indexOf('Trident') > -1, //IE内核
+            presto: u.indexOf('Presto') > -1, //opera内核
+            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,//火狐内核
+            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+            iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+            iPad: u.indexOf('iPad') > -1, //是否iPad
+            webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+        };
+    }(),
+    language:(navigator.browserLanguage || navigator.language).toLowerCase()
+}
+
+
+
+			//加载content列表
+			function loadlives(url,containerid){
+				 var request = new XMLHttpRequest();
+				 request.open("GET",url,true);
+				 request.onload=function(){
+					 var contents=eval("(" + request.responseText + ")");
+					 for( j in contents){
+						 var i=contents[j];
+						
+						 document.getElementById(containerid).innerHTML += "<a onclick='window.location.href=\""+ i.href +"\"'><div class='live' ><div class='livecover' style='background:url(\""+i.livecover+"\");background-size:contain'></div><div  class='right'><div class='title'><h3>"+ i.title +"</h3></div><div class='artist'>艺术家:"+ i.artist +"</div><div class='editor'>编辑:"+ i.editor +"</div><div class='info'>"+ i.info +"</div></div></div></a>" 
+						 }
+					 }
+					 request.send();
+			}
+			
+			
+</script>
+</head>
+
+<body onload="$(window).bind('orientationchange',function(){location.reload()});loadlives('content.json','livelist')">
+<div id="main">
+
+<div id="header">
+
+	<div id="banner">
+		<div id="logo">
+		  <h1>LLpractice</h1>
+	</div>
+		<div id="user"></div>
+	</div>
+<div id="search"></div>
+</div>
+
+<div id="maincontent">
+	<div id="showcase">
+    <div >
+      <h2>精选歌曲</h2></div>
+    	<div id="player"></div>
+ 
+    </div>
+    <script>
+    		//设置cover flow
+		var cf=coverflow("player").setup({
+			flash:'coverflow.swf',
+			playlist:'featuredlive.json',
+			width: document.getElementById("showcase").offsetWidth,
+			height:window.innerHeight/1.5,
+			coverwidth:0.4 * window.innerHeight,
+	
+			backgroundcolor:"000"});
+		cf.on("ready",function(){this.on("click",cfclick)});
+		
+			function cfclick(index,link){
+				window.location.href=link;
+			}
+			</script>
+            <h2>最近更新</h2>
+	<div class="contentlist" id="livelist" > 	
+      </div>
+	</div>
+</div>
+
+<div id="footer">
+
+
+<div style="height:500px"></div><br/><br/><br/><br/>
+<p>LLpractice建设中，目前仅提供初步的预览，特别感谢@A T 大神赞助服务器以及后端程序</p>
+<div id="buttom"><a><div class="buttomcell">使用介绍</div></a><a><div class="buttomcell">Change Log</div></a><a><div class="buttomcell">相关工具</div></a><a><div class="buttomcell">关于LLpractice</div></a><a><div class="buttomcell">参与LLpractice</div></a></div>
+</div>
+</div>
+</body>
+</html>

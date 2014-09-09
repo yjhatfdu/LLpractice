@@ -1,0 +1,64 @@
+ [
+  {
+  "title": "雪月花",
+  
+  "description": "",
+  
+  "image": "cover/xueyuehua_cover.jpg",
+  
+  "link":"/ll/ll.php?bgm=xueyuehua.json&bgimg=xueyuehua_cover.jpg&map=xueyuehua.json"
+   },
+  {
+  "title": "届かない恋’13",
+  
+  "description": "",
+  
+  "image": "cover/todokanaikoi13_cover.jpg",
+  
+  "link":"/ll/ll.php?bgm=todokanaikoi13.json&bgimg=background.jpg&map=todokanaikoi13.json"
+  },
+  {
+  "title": "くるりんMIRACLE",
+  "description": "",
+  "image": "cover/ruhua.jpg",
+  "link":"/ll/ll.php?bgm=ruhua.json&bgimg=ruhua.jpg&map=ruhua.json"
+  },
+  {
+  
+  "title": "wonderful rush",
+  
+  "description": "",
+  
+  "image": "cover/wonderfulrush.jpg",
+  
+  "link":"/ll/ll.php?bgm=wonderful rush.json&bgimg=background.jpg&map=wonderful rush.json"
+  
+  
+  
+  },
+  {
+  "title": "团子大家族",
+  
+  "description": "",
+  
+  "image": "cover/dango_cover.jpg",
+  
+  "link":"/ll/ll.php?bgm=dango.json&bgimg=background.jpg&map=dango.json"
+  },
+  {
+  "title": "Perfect Slumbers",
+  
+  "description": "",
+  
+  "image": "cover/Perfect Slumbers_cover.jpg",
+  
+  "link":"/ll/ll.php?bgm=Perfect Slumbers.json&bgimg=Perfect Slumbers.jpg&map=Perfect Slumbers.json"
+  },
+  {
+  "title": "Snow Halation (hard)",
+  "description": "",
+  "image": "cover/snowhalation.jpg",
+  "link":"/ll/ll.php?bgm=snowhalation.json&bgimg=background.jpg&map=snowhalation.json"
+
+  }
+  ]
