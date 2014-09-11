@@ -1,5 +1,29 @@
  [
   {
+  "href":"/ll/ll.php?bgm=imsohappy.json&bgimg=background.jpg&map=imsohappy.json",
+  "livecover":"cover/imsohappy_cover.png",
+  "title":"我巨爽!",
+  "artist":"Ryu☆",
+  "editor":"zyzhhh2014",
+  "info":"爽爽爽爽爽！",
+  },
+  {
+  "href":"/ll/ll.php?bgm=omr.json&bgimg=background.jpg&map=omr.json",
+  "livecover":"cover/omr_cover.jpg",
+  "title":"Only my railgun",
+  "artist":"KKE",
+  "editor":"钟",
+  "info":"只有KKE知道的电磁炮！",
+  },
+  {
+  "href":"/ll/ll.php?bgm=Renai.json&bgimg=background.jpg&map=Renai.json",
+  "livecover":"cover/Renai_cover.jpg",
+  "title":"恋爱循环",
+  "artist":"<s>兵库北</s>香菜",
+  "editor":"Unicorn",
+  "info":"请叫我丧心病狂的香菜蜜",
+  },
+  {
   "href":"/ll/ll.php?bgm=todokanaikoi13.json&bgimg=background.jpg&map=todokanaikoi13.json",
   "livecover":"cover/todokanaikoi13_cover.jpg",
   "title":"届かない恋’13",
@@ -13,7 +37,7 @@
   "title":"雪月花",
   "artist":"歌組雪月花",
   "editor":"沧海の王子",
-  "info":"转转转！根本停不下来！",
+  "info":"转转转！根本停不下来",
   },
   {
   "href":"/ll/ll.php?bgm=ruhua.json&bgimg=ruhua.jpg&map=ruhua.json",
@@ -29,7 +53,7 @@
   "title":"Snow Halation",
   "artist":"µ's",
   "editor":"精子酱",
-  "info":"Snow halation Hard难度",
+  "info":"Snowhalation Hard",
   },
   {
   "href":"/ll/ll.php?bgm=wonderful rush.json&bgimg=background.jpg&map=wonderful rush.json",
@@ -37,7 +61,7 @@
   "title":"wonderful rush",
   "artist":"µ's",
   "editor":"钟",
-  "info":"wonderful rush EX难度",
+  "info":"wonderful rush EX",
   },
   {
   
@@ -46,7 +70,7 @@
   "title":"团子大家族",
   "artist":"CLANNAD",
   "editor":"钟",
-  "info":"《CLANNAD》的插曲",
+  "info":"《CLANNAD》的ED",
   },
   
   {

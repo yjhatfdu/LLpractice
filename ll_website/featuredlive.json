@@ -1,5 +1,14 @@
  [
   {
+  "title": "I'm so happy!",
+  
+  "description": "",
+  
+  "image": "cover/imsohappy_cover.png",
+  
+  "link":"/ll/ll.php?bgm=imsohappy.json&bgimg=background.jpg&map=imsohappy.json"
+  },
+  {
   "title": "雪月花",
   
   "description": "",
@@ -8,6 +17,24 @@
   
   "link":"/ll/ll.php?bgm=xueyuehua.json&bgimg=xueyuehua_cover.jpg&map=xueyuehua.json"
    },
+  {
+  "title": "Only my railgun",
+  
+  "description": "",
+  
+  "image": "cover/omr_cover.jpg",
+  
+  "link":"/ll/ll.php?bgm=omr.json&bgimg=background.jpg&map=omr.json"
+  },
+  {
+  "title": "恋爱循环",
+  
+  "description": "",
+  
+  "image": "cover/Renai_cover.jpg",
+  
+  "link":"/ll/ll.php?bgm=Renai.json&bgimg=background.jpg&map=Renai.json"
+  },
   {
   "title": "届かない恋’13",
   
@@ -53,12 +80,5 @@
   "image": "cover/Perfect Slumbers_cover.jpg",
   
   "link":"/ll/ll.php?bgm=Perfect Slumbers.json&bgimg=Perfect Slumbers.jpg&map=Perfect Slumbers.json"
-  },
-  {
-  "title": "Snow Halation (hard)",
-  "description": "",
-  "image": "cover/snowhalation.jpg",
-  "link":"/ll/ll.php?bgm=snowhalation.json&bgimg=background.jpg&map=snowhalation.json"
-
   }
-  ]
+   ]
