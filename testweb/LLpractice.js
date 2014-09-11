@@ -48,7 +48,7 @@
     //var touchview;            //已定义为局部变量 为了调整canvas界面而采用的遮罩层，在开始后隐藏(可考虑删除用其它方法代替)
     //var windowwidth;          //已定义为局部变量 window.offsetWidth
     //var windowheight;         //已定义为局部变量 window.offsetHeight
-    //var mycanvas;             //已定义为局部变量 canvas主画布
+    var mycanvas;               //canvas主画布
     //var mybody;               //已定义为局部变量 document.body
     //var inittime;             //已定义为局部变量 开始时间的提前值(s)
 
@@ -170,10 +170,11 @@
         }
         
         //加载bgm
+        /*
         if (bgmpath==null){
             var bgmpath=hitmapdata.audiofile;
         }
-
+        */
         //使用ajax加载
         var request = new XMLHttpRequest();
         request.open("GET", bgmpath, true);
@@ -221,7 +222,7 @@
 
         document.getElementById("maindiv").style.height = "100%";
         document.getElementById("maindiv").style.width  = "100%";
-        var mycanvas = document.getElementById("maincanvas");
+        mycanvas = document.getElementById("maincanvas");
         var bgimg    = document.getElementById("bgimg");
         var windowheight = document.getElementById("maindiv").offsetHeight;
         var windowwidth  = document.getElementById("maindiv").offsetWidth;
@@ -812,9 +813,11 @@
         fxsource=audiocontext.createBufferSource();
         fxsource.connect(audiocontext.destination);
         fxsource.buffer = soundbuffer;
+        /*
         fxsource.onended=function(){
-            fx.disconnect(audiocontext.desrination);
+            fx.disconnect(audiocontext.destination);
         }
+        */
         fxsource.start(0);
     }
 
@@ -837,9 +840,13 @@
             init : function(hitmap,bgm){
                 hitmapfile = hitmap||null;
                 bgmpath = bgm||null;
-            }
+                init();
+            },
             resize : function(){
                 resize();
+            },
+            start : function(){
+                start();
             }
         };
     }
