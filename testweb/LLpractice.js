@@ -38,6 +38,7 @@
     var perfectbuffer;          //Perfect音效音频缓存
     var greatbuffer;            //Great音效音频缓存
     var goodbuffer;             //Good音效音频缓存
+    var mycanvas;               //canvas主画布
 
     //var badbuffer;            //Bad音效音频缓存(未启用)
     //var missbuffer;           //Miss音效音频缓存(未启用)
@@ -48,7 +49,6 @@
     //var touchview;            //已定义为局部变量 为了调整canvas界面而采用的遮罩层，在开始后隐藏(可考虑删除用其它方法代替)
     //var windowwidth;          //已定义为局部变量 window.offsetWidth
     //var windowheight;         //已定义为局部变量 window.offsetHeight
-    //var mycanvas;             //已定义为局部变量 canvas主画布
     //var mybody;               //已定义为局部变量 document.body
     //var inittime;             //已定义为局部变量 开始时间的提前值(s)
 
@@ -837,9 +837,13 @@
             init : function(hitmap,bgm){
                 hitmapfile = hitmap||null;
                 bgmpath = bgm||null;
-            }
+                init();
+            },
             resize : function(){
                 resize();
+            },
+            start : function(){
+                start();
             }
         };
     }
