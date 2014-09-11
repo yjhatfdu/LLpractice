@@ -27,7 +27,8 @@
 
     var responsetime = 200;     //击打相应时间(ms)，默认在128的速度下为200ms
     var p = 0.5;                //canvas画布比例值常量，const并不被所有浏览器支持
-    var hitmapdata;             //歌曲击打值的json信息
+    var hitmapdata;             //歌曲beat信息的json文件
+    var bgmpath;                //BGM的json文件
     var duration;               //BGM流的持续时间(s)
     var audiocontext;           //HTML5 Audio的API
     var maingraphics;           //canvas主画布
@@ -187,7 +188,7 @@
                 bgmbuffer = buffer;
                 document.getElementById("indicator").style.fontsize = 50 ;
                 document.getElementById("indicator").innerHTML      = "START!"
-                document.getElementById("indicator").setAttribute("onclick", "start()");
+                //document.getElementById("indicator").setAttribute("onclick", "start()");
                 duration = buffer.duration * 1000;
             },function(){return;});
         }
@@ -833,9 +834,9 @@
     //LLpractice.js的初步模块化
     var LLpractice=function(){
         return {
-            init : function(hitmapdata){
-                hitmapdata = hitmapdata||{};
-                init();
+            init : function(hitmap,bgm){
+                hitmapfile = hitmap||null;
+                bgmpath = bgm||null;
             }
             resize : function(){
                 resize();
