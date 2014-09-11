@@ -221,7 +221,7 @@
 
         document.getElementById("maindiv").style.height = "100%";
         document.getElementById("maindiv").style.width  = "100%";
-        var mycanvas = document.getElementById("maincanvas");
+        mycanvas = document.getElementById("maincanvas");
         var bgimg    = document.getElementById("bgimg");
         var windowheight = document.getElementById("maindiv").offsetHeight;
         var windowwidth  = document.getElementById("maindiv").offsetWidth;
