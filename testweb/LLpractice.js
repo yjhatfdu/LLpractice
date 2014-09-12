@@ -286,7 +286,7 @@
         */
         //初始化数组
         for (i = 0; i < 9; i++) {
-            currentdrawingnotes[i] = new Array();
+            currentdrawingnotes[i] = {};
         }
         //创建touch检测
         if(document.hasOwnProperty("ontouchstart")) {
@@ -480,7 +480,7 @@
         }else{
             maingraphics.fillStyle = "rgba(255,255,255,0.5)";
         }
-        maingraphics.closePath;
+
         maingraphics.fill();
     }
 
@@ -503,8 +503,8 @@
         maingraphics.stroke();
         if(fill){
             //填充长note的末尾
-            maingraphics.fillStyle="rgb(240,240,240)";
-            maingraphics.fill;
+           // maingraphics.fillStyle="rgb(240,240,240)";
+           // maingraphics.fill();
         }
     }
 
@@ -516,14 +516,14 @@
         //画hit的反馈效果
         var targetcircle=getcircle(0,lane);
         var offsettime=currenttime-hitsprite[lane];
-        var grd=maingraphics.createRadialGradient(targetcircle.x,targetcircle.y,p*64*offsettime/hitspritetime,targetcircle.x,targetcircle.y,p*64*(offsettime/hitspritetime+1));
+        var grd=maingraphics.createRadialGradient(targetcircle.x,targetcircle.y,p*64*offsettime/hitspritetime,targetcircle.x,targetcircle.y,p*64*(offsettime/hitspritetime+2));
         
-        var alpha=1*(1-offsettime/hitspritetime);
+        var alpha=(1-offsettime/hitspritetime);
         grd.addColorStop(0,"rgba(255,255,255,"+alpha*alpha+")");
         grd.addColorStop(0.5,"rgba(255,255,255,"+alpha+")");
         grd.addColorStop(1,"rgba(255,255,255,0)");
         maingraphics.beginPath();
-        maingraphics.arc(targetcircle.x,targetcircle.y,targetcircle.r *2,0,2*Math.PI);
+        maingraphics.arc(targetcircle.x,targetcircle.y,targetcircle.r *3,0,2*Math.PI);
         maingraphics.fillStyle=grd;
         maingraphics.fill();
     }
@@ -534,7 +534,7 @@
         var offset=(currenttime-rankfade)/rankpritetime;
         maingraphics.textBaseline="middle";
         maingraphics.textAlign="center";
-        maingraphics.fillStyle = "rgba(255,255,255,"+(1-offset)*1+")";
+        maingraphics.fillStyle = "rgba(255,255,255,"+(1-offset)+")";
         maingraphics.font=p*(40*offset+40) + "px Arial";
         maingraphics.fillText(currentrank,512*p,350*p);
         
@@ -741,8 +741,19 @@
         if (currentdrawingnotes[lane].length == 0) {
             return;
         }
-        var note = currentdrawingnotes[lane][0];
-        var offset = currenttime - note.starttime;
+        var  minoffset=128000/speed+100;
+        var tempoffset;
+        var minindex;
+        for( var i=0 ; i<currentdrawingnotes[lane].length;i++){
+            tempoffset=currentdrawingnotes[lane][i].starttime-currenttime;
+            if (Math.abs(tempoffset)<=minoffset){
+
+                minoffset=tempoffset;
+                minindex=i;
+            }
+        }
+
+        var offset = minoffset;
         if (Math.abs(offset) > responsetime * 128 / speed) {
             return;
         }
@@ -751,7 +762,7 @@
             ranknote(offset, 0,lane);
         } else {
             //如果是短note就从绘图列表里删除
-            currentdrawingnotes[lane].shift();
+            currentdrawingnotes[lane].splice(i,1);
             ranknote(offset,1,lane);
         }
     }
