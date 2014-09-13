@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="Mug Engine">
+    <serverData>
+      <paths name="Mug Engine">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/MugEngine" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
+

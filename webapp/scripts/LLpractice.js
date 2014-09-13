@@ -759,38 +759,45 @@ ry=y-mycanvas.offsetTop;
     rx=rx/ratio-512;
 ry=ry/ratio-170;
     //算出角度
-    if (rx!=0){
+    
         var r=Math.sqrt(rx*rx+ry*ry);
         var angle= Math.acos(-rx/r);
-        return Math.round(angle/0.125/Math.PI);
-    }
+        return Math.round(angle/0.125/Math.PI)
 return null;
 
 }
 function touchdown(lane) {
     //相应按下的事件
-    var d = new Date();
-    
-    currenttime = d.getTime() - starttime;
-    if (currentdrawingnotes[lane].length == 0)
-    {
-        return;
-    }
-    var note = currentdrawingnotes[lane][0];
-    var offset = currenttime - note.starttime;
-    if (Math.abs(offset) > responsetime * 128 / speed) {
-        return;
-    }
-    
-    
-    if (note.longnote == true) {
-        note.hold = true;
-        ranknote(offset, 0,lane);
-    } else {
-        //如果是短note就从绘图列表里删除
-        currentdrawingnotes[lane].shift();
-        ranknote(offset,1,lane);
-    }
+     var d = new Date();
+        currenttime = d.getTime() - starttime;
+        if (currentdrawingnotes[lane].length == 0) {
+            return;
+        }
+        var  minoffset=128000/speed+100;
+        var tempoffset;
+        var minindex;
+		var note;
+        for( var i=0 ; i<currentdrawingnotes[lane].length;i++){
+            tempoffset=currentdrawingnotes[lane][i].starttime-currenttime;
+            if (Math.abs(tempoffset)<=minoffset){
+
+                minoffset=tempoffset;
+                minindex=i;
+            }
+        }
+note=currentdrawingnotes[lane][minindex];
+        var offset = minoffset;
+        if (Math.abs(offset) > responsetime * 128 / speed) {
+            return;
+        }
+        if (note.longnote == true) {
+            note.hold = true;
+            ranknote(offset, 0,lane);
+        } else {
+            //如果是短note就从绘图列表里删除
+            currentdrawingnotes[lane].splice(minindex,1);
+            ranknote(offset,1,lane);
+        }
 }
 
 function touchup(lane) {
@@ -857,9 +864,6 @@ function playsound(soundbuffer) {
     fxsource=audiocontext.createBufferSource();
     fxsource.connect(audiocontext.destination);
     fxsource.buffer = soundbuffer;
-    fxsource.onended=function(){
-		fx.disconnect(audiocontext.desrination);
-		}
     fxsource.start(0);
     
 }

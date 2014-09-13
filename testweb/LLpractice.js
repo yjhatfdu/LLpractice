@@ -726,12 +726,10 @@
         rx=rx/ratio-512;
         ry=ry/ratio-170;
         //算出角度
-        if (rx!=0){
+  
             var r=Math.sqrt(rx*rx+ry*ry);
             var angle= Math.acos(-rx/r);
             return Math.round(angle/0.125/Math.PI);
-        }
-        return null;
     }
 
     function touchdown(lane) {
